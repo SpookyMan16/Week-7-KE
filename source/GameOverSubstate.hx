@@ -25,7 +25,7 @@ class GameOverSubstate extends MusicBeatSubstate
 				daBf = 'bf-pixel-dead';
 			case 'bf-holding-gf':
 				stageSuffix = '-warzone';
-				daBf = 'bf-holding-gf-dead';
+				daBf = 'bf-holding-gf-DEAD';
 			default:
 				daBf = 'bf';
 		}

@@ -586,20 +586,54 @@ class Character extends FlxSprite
 				flipX = true;
 	
 	
-			case 'bf-holding-gf-dead':
-					
-				frames = Paths.getSparrowAtlas('character/bfHoldingGF-DEAD');
-				animation.addByPrefix('singUP', "BF Dies with GF0", 24, false);
-				animation.addByPrefix('firstDeath', "BF Dies with GF0", 24, false);
-				animation.addByPrefix('deathLoop', "BF Dead with GF Loop0", 24, true);
-				animation.addByPrefix('deathConfirm', "RETRY confirm holding gf0", 24, false);
+			case 'bf-holding-gf-DEAD':
+
+				frames = Paths.getSparrowAtlas('characters/bfHoldingGF-DEAD');
+				animation.addByPrefix('singUP', "BF Dies with GF", 24, false);
+				animation.addByPrefix('firstDeath', "BF Dies with GF", 24, false);
+				animation.addByPrefix('deathLoop', "BF Dead with GF Loop", 24, true);
+				animation.addByPrefix('deathConfirm', "RETRY confirm holding gf", 24, false);
 				animation.play('firstDeath');
-	
-				addOffset('firstDeath', 37, 14);
-				addOffset('deathLoop', 37, -3);
-				addOffset('deathConfirm', 37, 28);
+
+				addOffset('firstDeath');
+				addOffset('deathLoop', -37);
+				addOffset('deathConfirm', -37);
 				playAnim('firstDeath');
 
+				flipX = true;
+
+			case 'bf-pixel-opponent':
+				frames = Paths.getSparrowAtlas('characters/bfPixelOPPONENT');
+				animation.addByPrefix('idle', 'BF IDLE', 24, false);
+				animation.addByPrefix('singUP', 'BF UP NOTE', 24, false);
+				animation.addByPrefix('singLEFT', 'BF RIGHT NOTE', 24, false);
+				animation.addByPrefix('singRIGHT', 'BF LEFT NOTE', 24, false);
+				animation.addByPrefix('singDOWN', 'BF DOWN NOTE', 24, false);
+				animation.addByPrefix('singUPmiss', 'BF UP MISS', 24, false);
+				animation.addByPrefix('singLEFTmiss', 'BF LEFT MISS', 24, false);
+				animation.addByPrefix('singRIGHTmiss', 'BF RIGHT MISS', 24, false);
+				animation.addByPrefix('singDOWNmiss', 'BF DOWN MISS', 24, false);
+	
+				addOffset('idle');
+				addOffset("singUP");
+				addOffset("singRIGHT");
+				addOffset("singLEFT");
+				addOffset("singDOWN");
+				addOffset("singUPmiss");
+				addOffset("singRIGHTmiss");
+				addOffset("singLEFTmiss");
+				addOffset("singDOWNmiss");
+	
+				setGraphicSize(Std.int(width * 6));
+				updateHitbox();
+	
+				playAnim('idle');
+	
+				width -= 100;
+				height -= 100;
+	
+				antialiasing = false;
+	
 				flipX = true;
 		}
 
