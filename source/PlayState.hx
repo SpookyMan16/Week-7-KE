@@ -2330,7 +2330,7 @@ class PlayState extends MusicBeatState
 				// phillyCityLights.members[curLight].alpha -= (Conductor.crochet / 1000) * FlxG.elapsed;
 			case 'warzone':
 				moveTank();
-			case 'warzone':
+			case 'warzone-stress':
 				moveTank();
 		}
 
