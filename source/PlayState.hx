@@ -2338,7 +2338,7 @@ class PlayState extends MusicBeatState
 
 		scoreTxt.text = Ratings.CalculateRanking(songScore,songScoreDef,nps,maxNPS,accuracy);
 
-		var lengthInPx = scoreTxt.textField.length * scoreTxt.frameHeight; // bad way but does more or less a better job
+		var lengthInPx = scoreTxt.textField.length * scoreTxt.frameHeight; // bad way but does more or less a better job //I hate it here lmao
 
 		scoreTxt.x = (originalX - (lengthInPx / 2)) + 335;
 
