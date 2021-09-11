@@ -183,6 +183,8 @@ class MainMenuState extends MusicBeatState
 				if (optionShit[curSelected] == 'donate')
 				{
 					fancyOpenURL("https://ninja-muffin24.itch.io/funkin");
+					fancyOpenURL("https://www.kickstarter.com/projects/funkin/friday-night-funkin-the-full-ass-game");
+					fancyOpenURL("https://www.newgrounds.com/portal/view/770371");
 				}
 				else
 				{
