@@ -186,7 +186,7 @@ class PlayState extends MusicBeatState
 	var fc:Bool = true;
 
 	var tower:FlxSprite;
-	var steve:FlxSprite;
+	var tankRolling:FlxSprite;
 	var tankmanRun:FlxTypedGroup<TankmenBG>;
 	//tankbop shit
 	var tankBop1:FlxSprite;
@@ -787,15 +787,6 @@ class PlayState extends MusicBeatState
 								smokeRight.animation.play('idle');
 								
 								add(smokeRight);
-				
-								steve = new FlxSprite(300,300);
-								steve.frames = Paths.getSparrowAtlas('warzone/tankRolling');
-								steve.animation.addByPrefix('idle', 'BG tank w lighting ', 24, true);
-								steve.scrollFactor.set(0.5, 0.5);
-								steve.antialiasing = true;
-								steve.animation.play('idle');
-
-								add(steve);
 
 								tower = new FlxSprite(100, 120);
 								tower.frames = Paths.getSparrowAtlas('warzone/tankWatchtower');
@@ -804,6 +795,15 @@ class PlayState extends MusicBeatState
 								if(FlxG.save.data.distractions){
 									add(tower);
 								}
+
+								tankRolling = new FlxSprite(300,300);
+								tankRolling.frames = Paths.getSparrowAtlas('tankRolling');
+								tankRolling.animation.addByPrefix('idle', 'BG tank w lighting ', 24, true);
+								tankRolling.scrollFactor.set(0.5, 0.5);
+								tankRolling.antialiasing = true;
+								tankRolling.animation.play('idle');
+								
+								add(tankRolling);
 				
 								var ground:FlxSprite = new FlxSprite(-420, -150).loadGraphic(Paths.image('warzone/tankGround'));
 								ground.scrollFactor.set();
@@ -871,7 +871,7 @@ class PlayState extends MusicBeatState
 								}
 								case 'warzone-stress':
 									{
-										defaultCamZoom = 0.9;
+										defaultCamZoom = 0.85;
 
 										picoStep = Json.parse(openfl.utils.Assets.getText(Paths.json('stress/picospeaker')));
 										tankStep = Json.parse(openfl.utils.Assets.getText(Paths.json('stress/tankSpawn')));
@@ -943,13 +943,17 @@ class PlayState extends MusicBeatState
 											add(tower);
 										}
 										
-										steve = new FlxSprite(300,300);
-										steve.frames = Paths.getSparrowAtlas('warzone/tankRolling');
-										steve.animation.addByPrefix('idle', 'BG tank w lighting ', 24, true);
-										steve.scrollFactor.set(0.5, 0.5);
-										steve.antialiasing = true;
-										steve.animation.play('idle');
-										add(steve);
+										tankRolling = new FlxSprite(300,300);
+										tankRolling.frames = Paths.getSparrowAtlas('tankRolling');
+										tankRolling.animation.addByPrefix('idle', 'BG tank w lighting ', 24, true);
+										tankRolling.scrollFactor.set(0.5, 0.5);
+										tankRolling.antialiasing = true;
+										tankRolling.animation.play('idle');
+										tankAngle += FlxG.elapsed * tankSpeed;
+										tankRolling.angle = tankAngle - 90 + 15;
+										tankRolling.x = tankX + 1500 * FlxMath.fastCos(FlxAngle.asRadians(tankAngle + 180));
+										tankRolling.y = 1300 + 1100 * FlxMath.fastSin(FlxAngle.asRadians(tankAngle + 180));
+										add(tankRolling);
 										tankmanRun = new FlxTypedGroup<TankmenBG>();
 										add(tankmanRun);
 						
@@ -1145,7 +1149,7 @@ class PlayState extends MusicBeatState
 				dad.y += 100;
 				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
 			case 'tankman':
-				dad.y += 170;
+				dad.y += 175;
 			case 'bf-pixel-opponent':
 				dad.x += 50;
 				dad.y += 500;
@@ -2324,6 +2328,10 @@ class PlayState extends MusicBeatState
 					}
 				}
 				// phillyCityLights.members[curLight].alpha -= (Conductor.crochet / 1000) * FlxG.elapsed;
+			case 'warzone':
+				moveTank();
+			case 'warzone':
+				moveTank();
 		}
 
 		super.update(elapsed);
@@ -4408,15 +4416,16 @@ class PlayState extends MusicBeatState
 	function moveTank()
 	{
 		tankAngle += FlxG.elapsed * tankSpeed;
-		steve.angle = tankAngle - 90 + 15;
-		steve.x = tankX + 1500 * FlxMath.fastCos(FlxAngle.asRadians(tankAngle + 180));
-		steve.y = 1300 + 1100 * FlxMath.fastSin(FlxAngle.asRadians(tankAngle + 180));
+		tankRolling.angle = tankAngle - 90 + 15;
+		tankRolling.x = tankX + 1500 * FlxMath.fastCos(FlxAngle.asRadians(tankAngle + 180));
+		tankRolling.y = 1300 + 1100 * FlxMath.fastSin(FlxAngle.asRadians(tankAngle + 180));
 	}
 
 	function again()
 	{
-		steve.x = 300;
-		steve.y = 300;
+		tankRolling.x = 300;
+		tankRolling.y = 300;
+		tankRolling.angle = tankAngle - 90 + 15;
 		moveTank();
 	}
 
