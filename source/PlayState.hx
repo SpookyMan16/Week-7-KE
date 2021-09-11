@@ -3130,6 +3130,8 @@ class PlayState extends MusicBeatState
 
 					PlayState.SONG = Song.loadFromJson(poop, PlayState.storyPlaylist[0]);
 					FlxG.sound.music.stop();
+
+					LoadingState.loadAndSwitchState(new PlayState());
 				}
 			}
 			else
