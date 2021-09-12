@@ -3121,15 +3121,23 @@ class PlayState extends MusicBeatState
 						camHUD.visible = false;
 
 						FlxG.sound.play(Paths.sound('Lights_Shut_off'));
-					}
-
-					FlxTransitionableState.skipNextTransIn = true;
-					FlxTransitionableState.skipNextTransOut = true;
+						}
 					prevCamFollow = camFollow;
-
 
 					PlayState.SONG = Song.loadFromJson(poop, PlayState.storyPlaylist[0]);
 					FlxG.sound.music.stop();
+
+					switch(SONG.song.toLowerCase())
+					{
+						case 'guns':
+						LoadingState.loadAndSwitchState(new VideoState("assets/videos/gunsCutscene.webm", new PlayState()));
+
+						case 'stress':
+							LoadingState.loadAndSwitchState(new VideoState("assets/videos/stressCutscene.webm", new PlayState()));
+				
+						default:
+						LoadingState.loadAndSwitchState(new PlayState());
+					}
 
 					LoadingState.loadAndSwitchState(new PlayState());
 				}
@@ -4140,7 +4148,7 @@ class PlayState extends MusicBeatState
 
 				//picoSpeaker and running tankmen
 
-				if(SONG.song.toLowerCase() == 'stress')
+				if (curStage == 'warzone-stress')
 					{
 						//RIGHT
 						for(i in 0...picoStep.right.length)

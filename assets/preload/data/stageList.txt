@@ -6,5 +6,5 @@ mall
 mallEvil
 school
 schoolEvil
-tank
-tank-stress
+warzone
+warzone-stress
