@@ -81,6 +81,17 @@ class GameOverSubstate extends MusicBeatSubstate
 			FlxG.sound.playMusic(Paths.music('gameOver' + stageSuffix));
 		}
 
+		var daStage = PlayState.curStage;
+
+		if (bf.animation.curAnim.name == 'firstDeath' && bf.animation.curAnim.finished)
+		{
+			FlxG.sound.playMusic(Paths.music('gameOver' + stageSuffix));
+			if (daStage == 'warzone' || daStage == 'warzone-stress')
+			{
+				FlxG.sound.play(Paths.sound('jeffGameover-' + FlxG.random.int(1, 25), 'shared'));
+			}
+		}
+
 		if (FlxG.sound.music.playing)
 		{
 			Conductor.songPosition = FlxG.sound.music.time;
