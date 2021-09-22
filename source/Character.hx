@@ -553,7 +553,7 @@ class Character extends FlxSprite
 				addOffset("singDOWN", 98, -90);
 				addOffset("oldSingDOWN", 98, -90);
 				//addOffset("ughAnim", 45, 0);
-				addOffset("prettyGoodAnim", 45, 20);
+				addOffset("prettyGoodAnim", 45, 19);
 				playAnim('idle');
 				
 				flipX = true;
